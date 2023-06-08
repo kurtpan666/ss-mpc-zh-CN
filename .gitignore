@@ -19,6 +19,7 @@
 *.maf
 *.mtc*
 *.ind
+*.ist
 
 ## Intermediate documents:
 *.dvi
