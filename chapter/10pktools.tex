@@ -1,0 +1,64 @@
+\chapter{公钥工具}\label{chp:10IOP}
+我们首先通过介绍几个基本工具来开始讨论公钥密码学，这些工具将在本书的其余部分中使用。这些工具的主要应用将在接下来的几章中出现，我们将在那里使用它们进行公钥加密、数字签名和密钥交换。由于我们在本章中使用了一些基本的代数和数论，因此建议读者首先简单地浏览一下附录A。
+
+我们从一个简单的玩具问题开始：在两方之间生成一个共享的秘密密钥，以便被动窃听敌手不能猜测出他们的共享密钥。敌手可以监听网络流量，但不能修改在途的消息或注入他自己的消息。在后面的章节中，我们开发了在存在可能干扰网络流量的主动攻击者的情况下进行密钥交换所需的全部设备。
+
+我们在开始时就强调，对窃听的安全性通常不足以应对真实世界的应用，因为有能力监听网络流量的攻击者通常也能够篡改它；然而，这个玩具窃听模型是介绍新公钥工具的好方法。
+
+\section{玩具问题：匿名密钥交换}\label{10.1}
+\section{单向陷门函数}\label{10.2}
+
+In this section, we introduce a tool that will allow us to build an efficient and secure key exchange protocol. 
+In Section 8.11, we introduced the notion of a one-way function. This is a function $F: \mathcal{X} \rightarrow \mathcal{Y}$ that is easy to compute, but hard to invert. 
+As we saw in Section 8.11, there are a number of very efficient functions that are plausibly one-way. One-way functions, however, are not sufficient for our purposes. We need one-way functions with a special feature, called a trapdoor. A trapdoor is a secret that allows one to efficiently invert the function; however, without knowledge of the trapdoor, the function remains hard to invert.
+Let us make this notion more precise.
+
+本节将介绍一个工具，让我们能够构造高效且安全的密钥交换协议。 
+在 8.11 节中，我们介绍了单向函数的概念。 
+这是一个易于计算但难以求逆的函数 $F: \mathcal{X} \rightarrow \mathcal{Y}$。 
+正如我们在 8.11 节中看到的，有许多非常高效的函数似乎是单向的。 然而，单向函数不足以满足我们的目的。 我们需要具有特殊功能的单向函数，称为陷门。 陷门是一个秘密，可以让人们有效地反转功能； 然而，在不知道暗门的情况下，该函数仍然难以反转。
+
+让我们使这个概念更精确。
+
+\begin{definition}[\textbf{陷门函数方案}]
+    令$\mathcal{X}$和$\mathcal{Y}$为有限集合。一个定义在$(\mathcal{X}, \mathcal{Y})$上的\dotemph{陷门函数方案}$\mathcal{T}$包括三部分的算法$(G, F, I)$，其中
+    \begin{itemize}
+        \item $G$ 是概率性的密钥生成算法，调用方式如下：$(p k, s k) \stackrel{R}{\leftarrow} G()$，其中 $p k$ 称为\dotemph{公钥}，$sk$ 称为\dotemph{私钥}。
+        \item $F$ 是确定性的算法，调用方式如下： $y \leftarrow F(p k, x)$，其中 $p k$ 是公钥（由 $G$ 输出），$x$ 在 $\mathcal{X }$中。 输出 $y$ 是 $\mathcal{Y}$ 的一个元素。
+        \item $I$ 是确定性的算法，调用方式如下： $x \leftarrow I(s k, y)$，其中 $sk$ 是一个私钥（由 $G$ 输出）且 $y$ 在 $\mathcal{Y}$中。输出 $x$ 是 $\mathcal{X}$ 的一个元素。
+
+    \end{itemize}
+    此外，应满足以下\dotemph{正确性性质}：对于 $G()$ 的所有可能输出 ( $p k, s k)$，以及对于所有 $x \in \mathcal{X}$，我们有 $I(s k, F (pk,x))=x$。
+    
+\end{definition}
+
+\begin{theorem}
+    test
+\end{theorem}
+
+\begin{definition}
+    We say that a trapdoor function scheme $\mathcal{T}$ is one way if for all efficient adversaries $\mathcal{A}$, the quantity $\mathsf{OWadv}[\mathcal{A}, \mathcal{T}]$ is negligible.    
+\end{definition}
+
+
+Note that in Attack Game 10.2, since the value $x$ is uniformly distributed over $\mathcal{X}$ and $F(p k, \cdot)$ is one-to-one, it follows that the value $y:=F(p k, x)$ is uniformly distributed over the image of $F(p k, \cdot)$. In the case of a trapdoor permutation scheme, where $\mathcal{X}=\mathcal{Y}$, the value of $y$ is uniformly distributed over $\mathcal{X}$.
+
+
+\subsection{使用单向陷门函数方案的密钥交换}
+\subsection{数学细节}
+
+As usual, in defining the one-wayness security property, we parameterize Attack Game 10.2 by the security parameter $\lambda$, and the advantage $\operatorname{OWadv}[\mathcal{A}, \mathcal{T}]$ is actually a function of $\lambda$. Definition 10.3 should be read as saying that $\operatorname{OWadv}[\mathcal{A}, \mathcal{T}](\lambda)$ is a negligible function.
+
+
+
+
+\section{基于RSA的陷门置换方案}\label{10.3}
+\section{Diffie-Hellman密钥交换}\label{10.4}
+\section{离散对数及相关假设}\label{10.5}
+\section{来自数论原语的抗碰撞哈希函数}\label{10.6}
+\section{对匿名Diffie-Hellman协议的攻击}\label{10.7}
+\section{Merkle谜题：一种使用分组加密对密钥协商的部分解决方案}\label{10.8}
+\section{一个有趣的应用：累加器}\label{10.9}
+\section{注记}\label{10.10}
+\section{习题}\label{10.11}
+
