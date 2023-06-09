@@ -116,6 +116,15 @@ delim_0 "\\nobreak\\dotfill"
 \addtocontents{toc}{\protect\hypertarget{chap-\thechapter}{}}}
 
 
+\titleformat{\part}[display]
+{\centering\normalfont\huge\bfseries}{第\,\chinese{part}\,部分}{20pt}{\hyperlink{chap-\thepart}{\Huge#1}
+\addtocontents{toc}{\protect\hypertarget{chap-\thepart}{}}}
+
+
+
+
+
+
 
 \titleformat{\subsubsection}[runin]
   {\normalfont\large\bfseries}{}{}{#1}[]
@@ -255,45 +264,26 @@ delim_0 "\\nobreak\\dotfill"
 	% \printunsrtglossary % main entry
 
 %%%%%%%%%%%%%%%Content%%%%%%%%%%%%%%%
-% \mainmatter % separat the number of toc and mainmatter
-% 原始模版内容
-% \input{./chapter/preface.tex}
 
-% \part{Mathematics}
-% \input{./chapter/discrete_math.tex}
+\mainmatter % separat the number of toc and mainmatter
 
-% \part{Computer Science}
-% % \input{./chapter/complexity.tex}
-% \input{./chapter/machine_learning.tex}
-% % \input{./chapter/algorithms.tex}
 
-% \part{Physics}
-% \input{./chapter/quantum_mechanics.tex}
-% % \input{./chapter/quantum_field_theory.tex}
+\input{./chapter/00intro.tex}
 
-% \begin{appendices}
-%   \input{./chapter/appendix_formula.tex}
-%   \end{appendices}
+\part{安全多方计算基础} \label{part:1}
+\input{./chapter/01theory.tex}
+\input{./chapter/02ssmpc.tex}
 
-% \input{./chapter/01Introduction.tex}
-% \input{./chapter/02Randomness.tex}
-% \input{./chapter/03Definition.tex}
-% \input{./chapter/04IP.tex}
-% \input{./chapter/05FS.tex}
-% \input{./chapter/06FrontEnds.tex}
-% \input{./chapter/07argfromip.tex}
-% \input{./chapter/08MIP.tex}
-% \input{./chapter/09PCP.tex}
-% \input{./chapter/10pktools.tex}
-% \input{./chapter/11ZKP.tex}
-% \input{./chapter/12sigma.tex}
-% \input{./chapter/13CP.tex}
-% \input{./chapter/14PCDL.tex}
-% \input{./chapter/15PCPairing.tex}
-% \input{./chapter/16PC.tex}
-% \input{./chapter/17LPCP.tex}
-% \input{./chapter/18Recursion.tex}
-% \input{./chapter/19SNARK.tex}
+\part{诚实多数}
+\input{./chapter/03Shamir.tex}
+\input{./chapter/04pphsecure.tex}
+\input{./chapter/05ap23hsecure.tex}
+\input{./chapter/06ashsecure.tex}
+
+\part{不诚实多数}
+\input{./chapter/07pdsecure.tex}
+\input{./chapter/08adsecure.tex}
+
 
 
 

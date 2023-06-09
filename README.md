@@ -4,4 +4,5 @@ Chinese translation of [An Introduction to Secret-Sharing-Based Secure Multipart
 
 ### Translog
 
+- 0609 完成一级章节结构；类似chapter解决part中文显示
 - 230608 init ported from PAZK translation
